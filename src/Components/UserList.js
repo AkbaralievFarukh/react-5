@@ -1,15 +1,25 @@
 import React, { useState } from 'react';
 
-const UserList = ({users}) => {
+const UserList = ({users, onDeleteUser}) => {
+
+    const handleDeleteUser = (userId) => {
+        // Вызовите функцию onDeleteUser с передачей идентификатора пользователя для удаления
+        onDeleteUser(userId);
+      };
+
     return (
         <>
             {
                 users.map(user => 
-                    <div key={user.id} className='col-4'>
+                    <div key={user.id} className='col-3 pb-2 pt-2'>
                         <div className='box'>
-                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww" alt="" />
+                            <img src="https://global55.ru/usr/cv/cv-15923064240.jpg" alt="" />
                             <h4>{user.name}</h4>
                             <p>{user.username}</p>
+                            <div className={'d-flex justify-content-between'}>
+                                <button className={'btn btn-secondary'}>Edit User</button>
+                                <button className={'btn btn-danger'} onClick={() => onDeleteUser(user.id)}>Delete User</button>
+                            </div>
                         </div>
                     </div>
                     )

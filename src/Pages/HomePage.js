@@ -9,11 +9,16 @@ const HomePage = () => {
             .then(({data}) => setUsers(data))
     }, [])
 
+    const handleDeleteUser = (userId) => {
+        const updatedUsers = users.filter((user) => user.id !== userId);
+        setUsers(updatedUsers);
+      };
+
     return (
         <div className='home-page'>
            <div className='container'>
                 <div class="row mt-4">
-                    <UserList users={users} />
+                    <UserList users={users} onDeleteUser={handleDeleteUser} />
                 </div>
            </div>
         </div>
